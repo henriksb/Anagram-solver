@@ -1,7 +1,7 @@
 import argparse
 
 def arguments():
-	parser = argparse.ArgumentParser(description="Find anagrams")
+	parser = argparse.ArgumentParser(description="Extremely simple python script to find anagrams.")
 	parser.add_argument("-d", "--dictionary", help="Dictionary (wordlist) to search for anagrams", required=True)
 	parser.add_argument("-w", "--word", help="Input word to find anagrams with", required=True)
 	
