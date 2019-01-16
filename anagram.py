@@ -1,11 +1,24 @@
-word_list = "dictionary.txt"
-word = input("Enter word: ").lower()
+import argparse
+
+def arguments():
+	parser = argparse.ArgumentParser(description="Find anagrams")
+	parser.add_argument("-d", "--dictionary", help="Dictionary (wordlist) to search for anagrams", required=True)
+	parser.add_argument("-w", "--word", help="Input word to find anagrams with", required=True)
+	
+	return vars(parser.parse_args())
+
 
 def is_anagram(str1, str2):
 	return sorted(str1) == sorted(str2)
 
-with open(word_list, "r") as word_list:
-	for w in word_list:
-		if is_anagram(word, w.replace("\n", "")):
-			if w.strip() != word.strip(): print(w)
 		
+if __name__ == "__main__":
+	args = arguments()
+	
+	dictionary = args["dictionary"]
+	word = args["word"].lower()
+	
+	with open(dictionary, "r") as word_list:
+		for w in word_list:
+			if is_anagram(word, w.replace("\n", "")):
+				if w.strip() != word.strip(): print(w.replace("\n", ""))
